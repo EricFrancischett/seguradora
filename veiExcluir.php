@@ -51,11 +51,7 @@
 				if ($result = $conn->query($sql)) {  // Consulta ao BD ok
 					if ($result->num_rows == 1) {          // Retorna 1 registro que será deletado  
 						$row = $result->fetch_assoc();
-						$dataN = explode('-', $row["ano"]);
-						$ano = $dataN[0];
-						$mes = $dataN[1];
-						$dia = $dataN[2];
-						$nova_data = $dia . '/' . $mes . '/' . $ano;
+						$ano = $row["ano"];
 				?>
 						<div class="w3-container w3-theme">
 							<h2>Exclusão do Veículo Cód. = [<?php echo $row['id_veiculo']; ?>]</h2>
@@ -69,7 +65,7 @@
 							<label class="w3-text-IE"><b>cor: </b><?php echo $row['cor']; ?></label>
 							</p>
 							<p>
-							<label class="w3-text-IE"><b>Data de Nascimento: </b><?php echo $nova_data; ?></label>
+							<label class="w3-text-IE"><b>Ano: </b><?php echo $ano; ?></label>
 							</p>
 							<p>
 							<label class="w3-text-IE"><b>Sinistro: </b><?php echo $row['Sinistro']; ?></label>

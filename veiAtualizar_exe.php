@@ -38,7 +38,7 @@
 		<?php
 			// Recebe os dados que foram preenchidos no formulário, com os valores que serão atualizados
 			$id      = $_POST['Id'];  // identifica o registro a ser alterado
-			$marcaModelo    = $_POST['MarcaModelo'];
+			$marcaModelo    = $_POST['Marca/Modelo'];
 			$ano     = $_POST['Ano'];
 			$cor  = $_POST['Cor'];
 			$sinistro   = $_POST['Sinistro'];
@@ -56,10 +56,10 @@
 		
 			// Faz Update na Base de Dados
 			if ($_FILES['Imagem']['size'] == 0) { // Não recebeu uma imagem binária
-				$sql = "UPDATE veiculo SET marca_modelo = '$marcaModelo', ano = '$ano', cor = '$cor' WHERE id_veiculo = $id";
+				$sql = "UPDATE veiculos SET marca_modelo = '$marcaModelo', ano = '$ano', cor = '$cor', id_sinistro = '$sinistro' WHERE id_veiculo = $id";
 			}else{
 				$imagem = addslashes(file_get_contents($_FILES['Imagem']['tmp_name'])); // Prepara para salvar em BD
-				$sql = "UPDATE veiculo SET marca_modelo = '$marcaModelo', ano = '$ano', cor = '$cor', imagem = '$imagem' WHERE id_veiculo = $id";
+				$sql = "UPDATE veiculos SET marca_modelo = '$marcaModelo', ano = '$ano', cor = '$cor', imagem = '$imagem' WHERE id_veiculo = $id";
 			}
 
 			echo "<div class='w3-responsive w3-card-4'>";

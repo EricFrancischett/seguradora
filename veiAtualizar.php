@@ -45,7 +45,7 @@
 				}
 
 				// Faz Select na Base de Dados
-				$sql = "SELECT id_veiculo, marca_modelo, imagem, ano, cor, id_sinistro FROM veiculos; WHERE id_veiculo = $id";
+				$sql = "SELECT id_veiculo, marca_modelo, imagem, ano, cor, id_sinistro FROM veiculos WHERE id_veiculo = $id";
 
 				//Inicio DIV form
 				echo "<div class='w3-responsive w3-card-4'>";
@@ -59,8 +59,6 @@
 						$cor           = $row['cor'];
 						$ano      = $row['ano'];
 						$imagem          = $row['imagem'];
-
-						// Obtém as Especialidades Médicas na Base de Dados para um combo box
 						$sqlG = "SELECT id_sinistro, nome_sinistro FROM sinistro";
 						$result = $conn->query($sqlG);
 						$optionsSinist = array();
@@ -89,11 +87,11 @@
 										</p>
 										<p>
 										<label class="w3-text-IE"><b>Cor</b>*</label>
-										<input class="w3-input w3-border w3-light-grey " name="cor" id="cor" type="text" maxlength="20" placeholder="Cor" title="Cor" value="<?php echo $cor; ?>" required>
+										<input class="w3-input w3-border w3-light-grey " name="Cor" id="cor" type="text" maxlength="20" placeholder="Cor" title="Cor" value="<?php echo $cor; ?>" required>
 										</p>
 										<p>
 										<label class="w3-text-IE"><b>Ano</b></label>
-										<input class="w3-input w3-border w3-light-grey " name="ano" type="year" placeholder="ano" title="ano" title="Formato: aaaa" value="<?php echo $ano; ?>">
+										<input class="w3-input w3-border w3-light-grey " name="Ano" type="year" placeholder="ano" title="ano" title="Formato: aaaa" value="<?php echo $ano; ?>">
 										</p>
 
 										<p><label class="w3-text-IE"><b>Sinistro</b>*</label>

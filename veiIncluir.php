@@ -88,10 +88,10 @@
 						<td>
 						<p style="text-align:center"><label class="w3-text-IE"><b>Imagem para Identificação: </b></label></p>
 						<p style="text-align:center"><img id="imagemSelecionada" src="imagens/carro.jpg" /></p>
-						<p style="text-align:center"><label class="w3-btn w3-theme">Selecione uma Imagem</label>
-								<input type="hidden" name="MAX_FILE_SIZE" value="16777215" />
-								<input type="file" id="Imagem" name="Imagem" accept="imagem/*" onchange="validaImagem(this);"> 
-						</p>
+						<p style="text-align:center"><label class="w3-btn w3-theme">Selecione uma Imagem
+											<input type="hidden" name="MAX_FILE_SIZE" value="16777215" />
+											<input type="file" id="Imagem" name="Imagem" accept="imagem/*" onchange="validaImagem(this);" /></label>
+									</p>
 						</td>
 						</tr>
 						<tr>

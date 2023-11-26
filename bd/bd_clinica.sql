@@ -38,9 +38,9 @@ CREATE TABLE `especialidade` (
 --
 
 INSERT INTO `especialidade` (`ID_Espec`, `Nome_Espec`, `Descricao`) VALUES
-(1, 'Dermatologista', 'Médico especialista no diagnóstico, tratamento e prevenção de doenças da pele, pelos, mucosas, cabelos e unhas.'),
-(2, 'Endocrinologista', 'Médico especialista no diagnóstico, tratamento e prevenção de doenças relacionadas com os hormônios e o metabolismo. Suas atribuições envolvem cuidar desde doenças ósseas, como osteoporose, até diabetes e obesidade, passando por tumores que produzem hormônios em excesso e doenças autoimunes que afetam sua formação.'),
-(3, 'Pediatra', 'Médico especializado na assistência a crianças e adolescentes, seja no aspecto preventivo ou curativo, realizando consultas de rotina e acompanhando o crescimento, medindo e pesando a criança, para comparar com exames anteriores, além de prevenir e tratar as possíveis enfermidades.');
+(1, 'Dermatologista', 'Veículo especialista no diagnóstico, tratamento e prevenção de doenças da pele, pelos, mucosas, cabelos e unhas.'),
+(2, 'Endocrinologista', 'Veículo especialista no diagnóstico, tratamento e prevenção de doenças relacionadas com os hormônios e o metabolismo. Suas atribuições envolvem cuidar desde doenças ósseas, como osteoporose, até diabetes e obesidade, passando por tumores que produzem hormônios em excesso e doenças autoimunes que afetam sua formação.'),
+(3, 'Pediatra', 'Veículo especializado na assistência a crianças e adolescentes, seja no aspecto preventivo ou curativo, realizando consultas de rotina e acompanhando o crescimento, medindo e pesando a criança, para comparar com exames anteriores, além de prevenir e tratar as possíveis enfermidades.');
 
 -- --------------------------------------------------------
 

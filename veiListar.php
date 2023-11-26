@@ -1,24 +1,18 @@
 <!DOCTYPE html>
-<!-------------------------------------------------------------------------------
-    Desenvolvimento Web
-    PUCPR
-    Profa. Cristina V. P. B. Souza
-    Agosto/2022
----------------------------------------------------------------------------------->
-<!-- medListar.php -->
+<!-- veiListar.php -->
 
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <title>Clínica Médica ABC</title>
+    <title>Seguradora</title>
     <link rel="icon" type="image/png" href="imagens/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="css/customize.css">
 </head>
 
-<body onload="w3_show_nav('menuMedico')">
+<body onload="w3_show_nav('menuVeiculo')">
     <!-- Inclui MENU.PHP  -->
     <?php require 'geral/menu.php'; ?>
     <?php require 'bd/conectaBD.php'; ?>
@@ -40,7 +34,7 @@
                 echo "</p> "
                 ?>
                 <div class="w3-container w3-theme">
-                    <h2>Listagem de Medicos</h2>
+                    <h2>Listagem de Veiculos</h2>
                 </div>
                 <!-- Acesso ao BD-->
                 <?php
@@ -53,42 +47,31 @@
 				}
 
                 // Faz Select na Base de Dados
-                $sql = "SELECT ID_Medico, CRM, Nome, Nome_Espec AS Especialidade, Foto, Dt_Nasc FROM Medico AS M INNER JOIN Especialidade AS E ON (M.ID_Espec = E.ID_Espec) ORDER BY M.Nome";
+                $sql = "SELECT id_veiculo, Imagem, marca_modelo, Cor, Ano, nome_sinistro AS Sinistro FROM veiculos AS V INNER JOIN Sinistro AS S ON (V.id_sinistro = S.id_sinistro) ORDER BY V.id_veiculo;";
                 $result = $conn->query($sql);
                 echo "<div class='w3-responsive w3-card-4'>";
                 if ($result->num_rows >0) {
                     echo "<table class='w3-table-all'>";
                     echo "	<tr>";
                     echo "	  <th width='7%'>Código</th>";
-                    echo "	  <th width='14%'>CRM</th>";
                     echo "	  <th width='14%'>Imagem</th>";
-                    echo "	  <th width='18%'>Médico</th>";
-                    echo "	  <th width='15%'>Especialidade</th>";
-                    echo "	  <th width='10%'>Nascimento</th>";
-                    echo "	  <th width='8%'>Idade</th>";
+                    echo "	  <th width='18%'>Veículo</th>";
+                    echo "	  <th width='14%'>Cor</th>";
+                    echo "	  <th width='10%'>Ano</th>";
+                    echo "	  <th width='15%'>Sinistro</th>";
                     echo "	  <th width='7%'> </th>";
                     echo "	  <th width='7%'> </th>";
                     echo "	</tr>";
                     // Apresenta cada linha da tabela
                     while ($row = $result->fetch_assoc()) {
-                        $data = $row['Dt_Nasc'];
-                        list($ano, $mes, $dia) = explode('-', $data);
-                        $nova_data = $dia . '/' . $mes . '/' . $ano;
-                        // data atual
-                        $hoje = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
-                        // Descobre a unix timestamp da data de nascimento do fulano
-                        $nascimento = mktime(0, 0, 0, $mes, $dia, $ano);
-                        // cálculo
-                        $idade = floor((((($hoje - $nascimento) / 60) / 60) / 24) / 365.25);
-                        $cod = $row["ID_Medico"];
+                        $data = $row['Ano'];
+                        $cod = $row["id_veiculo"];
                         echo "<tr>";
                         echo "<td>";
                         echo $cod;
-                        echo "</td><td>";
-                        echo $row["CRM"];
-                        if ($row['Foto']) { ?>
+                        if ($row['Imagem']) { ?>
                             <td>
-                                <img id="imagemSelecionada" class="w3-circle w3-margin-top" src="data:image/png;base64,<?= base64_encode($row['Foto']) ?>" />
+                                <img id="imagemSelecionada" class="w3-circle w3-margin-top" src="data:image/png;base64,<?= base64_encode($row['Imagem']) ?>" />
                             </td>
                             <td>
                             <?php
@@ -100,21 +83,21 @@
                             <td>
                             <?php
                         }
-                        echo $row["Nome"];
+                        echo $row["marca_modelo"];
                         echo "</td><td>";
-                        echo $row["Especialidade"];
+                        echo $row["Cor"];
                         echo "</td><td>";
-                        echo $nova_data;
+                        echo $data;
                         echo "</td><td>";
-                        echo $idade;
+                        echo $row["Sinistro"];
                         echo "</td>";
-                        //Atualizar e Excluir registro de médicos
+                        //Atualizar e Excluir registro de Veículos
                             ?>
                             <td>
-                                <a href='medAtualizar.php?id=<?php echo $cod; ?>'><img src='imagens/Edit.png' title='Editar Médico' width='32'></a>
+                                <a href='veiAtualizar.php?id=<?php echo $cod; ?>'><img src='imagens/Edit.png' title='Editar Veículo' width='32'></a>
                             </td>
                             <td>
-                                <a href='medExcluir.php?id=<?php echo $cod; ?>'><img src='imagens/Delete.png' title='Excluir Médico' width='32'></a>
+                                <a href='veiExcluir.php?id=<?php echo $cod; ?>'><img src='imagens/Delete.png' title='Excluir Veículo' width='32'></a>
                             </td>
                             </tr>
                     <?php

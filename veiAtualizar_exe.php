@@ -1,21 +1,15 @@
 <!DOCTYPE html>
-<!-------------------------------------------------------------------------------
-    Desenvolvimento Web
-    PUCPR
-    Profa. Cristina V. P. B. Souza
-    Agosto/2022
----------------------------------------------------------------------------------->
-<!-- medAtualizar.php --> 
+<!-- veiAtualizar.php --> 
 
 <html>
 	<head>
-	  <title>Clínica Médica ABC</title>
+	  <title>Seguradora</title>
 	  <link rel="icon" type="image/png" href="imagens/favicon.png" />
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	  <link rel="stylesheet" href="css/customize.css">
 	</head>
-	<body onload="w3_show_nav('menuMedico')">
+	<body onload="w3_show_nav('menuVeiculo')">
 	<!-- Inclui MENU.PHP  -->
 	<?php require 'geral/menu.php'; ?>
 	<?php require 'bd/conectaBD.php'; ?>
@@ -38,16 +32,16 @@
 		echo "</p> "
 		?>
 		<div class="w3-container w3-theme">
-		<h2>Atualização de Médico</h2>
+		<h2>Atualização de Veículo</h2>
 		</div>
 		<!-- Acesso ao BD-->
 		<?php
 			// Recebe os dados que foram preenchidos no formulário, com os valores que serão atualizados
 			$id      = $_POST['Id'];  // identifica o registro a ser alterado
-			$nome    = $_POST['Nome'];
-			$CRM     = $_POST['CRM'];
-			$dtNasc  = $_POST['DataNasc'];
-			$espec   = $_POST['Especialidade'];
+			$marcaModelo    = $_POST['MarcaModelo'];
+			$ano     = $_POST['Ano'];
+			$cor  = $_POST['Cor'];
+			$sinistro   = $_POST['Sinistro'];
 
 			// Cria conexão
 			$conn = new mysqli($servername, $username, $password, $database);
@@ -62,10 +56,10 @@
 		
 			// Faz Update na Base de Dados
 			if ($_FILES['Imagem']['size'] == 0) { // Não recebeu uma imagem binária
-				$sql = "UPDATE Medico SET Nome = '$nome', CRM = '$CRM', Dt_Nasc = '$dtNasc' WHERE ID_Medico = $id";
+				$sql = "UPDATE veiculo SET marca_modelo = '$marcaModelo', ano = '$ano', cor = '$cor' WHERE id_veiculo = $id";
 			}else{
 				$imagem = addslashes(file_get_contents($_FILES['Imagem']['tmp_name'])); // Prepara para salvar em BD
-				$sql = "UPDATE Medico SET Nome = '$nome', CRM = '$CRM', Dt_Nasc = '$dtNasc', Foto = '$imagem' WHERE ID_Medico = $id";	
+				$sql = "UPDATE veiculo SET marca_modelo = '$marcaModelo', ano = '$ano', cor = '$cor', imagem = '$imagem' WHERE id_veiculo = $id";
 			}
 
 			echo "<div class='w3-responsive w3-card-4'>";

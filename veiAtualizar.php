@@ -1,23 +1,17 @@
 <!DOCTYPE html>
-<!-------------------------------------------------------------------------------
-    Desenvolvimento Web
-    PUCPR
-    Profa. Cristina V. P. B. Souza
-    Agosto/2022
----------------------------------------------------------------------------------->
-<!-- MedAtualizar.php -->
+<!-- veiAtualizar.php -->
 
 <html>
 
 <head>
-	<title>Clínica Médica ABC</title>
+	<title>Seguradora</title>
 	<link rel="icon" type="image/png" href="imagens/favicon.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="css/customize.css">
 </head>
 
-<body onload="w3_show_nav('menuMedico')">
+<body onload="w3_show_nav('menuVeiculo')">
 	<!-- Inclui MENU.PHP  -->
 	<?php require 'geral/menu.php'; ?>
 	<?php require 'bd/conectaBD.php'; ?>
@@ -40,7 +34,7 @@
 
 				<!-- Acesso ao BD-->
 				<?php
-				$id = $_GET['id']; // Obtém PK do Médico que será atualizado
+				$id = $_GET['id']; // Obtém PK do Veiculo que será atualizado
 
 				// Cria conexão
 				$conn = new mysqli($servername, $username, $password, $database);
@@ -51,7 +45,7 @@
 				}
 
 				// Faz Select na Base de Dados
-				$sql = "SELECT ID_Medico, Nome, CRM, Dt_Nasc, ID_Espec, Foto FROM Medico WHERE ID_Medico = $id";
+				$sql = "SELECT id_veiculo, marca_modelo, imagem, ano, cor, id_sinistro FROM veiculos; WHERE id_veiculo = $id";
 
 				//Inicio DIV form
 				echo "<div class='w3-responsive w3-card-4'>";
@@ -59,21 +53,21 @@
 					if ($result->num_rows == 1) {          // Retorna 1 registro que será atualizado  
 						$row = $result->fetch_assoc();
 
-						$especialidade = $row['ID_Espec'];
-						$id_medico     = $row['ID_Medico'];
-						$nome          = $row['Nome'];
-						$CRM           = $row['CRM'];
-						$dataNasc      = $row['Dt_Nasc'];
-						$foto          = $row['Foto'];
+						$sinistro = $row['id_sinistro'];
+						$id_veiculo     = $row['id_veiculo'];
+						$marca_modelo          = $row['marca_modelo'];
+						$cor           = $row['cor'];
+						$ano      = $row['ano'];
+						$imagem          = $row['imagem'];
 
 						// Obtém as Especialidades Médicas na Base de Dados para um combo box
-						$sqlG = "SELECT ID_Espec, Nome_Espec FROM Especialidade";
+						$sqlG = "SELECT id_sinistro, nome_sinistro FROM sinistro";
 						$result = $conn->query($sqlG);
-						$optionsEspec = array();
+						$optionsSinist = array();
 
 						if ($result->num_rows > 0) {
 							while ($row = $result->fetch_assoc()) {
-								array_push($optionsEspec, "\t\t\t<option value='" . $row["ID_Espec"] . "'>" . $row["Nome_Espec"] . "</option>\n");
+								array_push($optionsSinist, "\t\t\t<option value='" . $row["id_sinistro"] . "'>" . $row["nome_sinistro"] . "</option>\n");
 							}
 						} else {
 							echo "Erro executando SELECT: " . $conn->connect_error;
@@ -81,31 +75,31 @@
 
 				?>
 						<div class="w3-container w3-theme">
-							<h2>Altere os dados do Médico Cód. = [<?php echo $id_medico; ?>]</h2>
+							<h2>Altere os dados do Veículo Cód. = [<?php echo $id_veiculo; ?>]</h2>
 						</div>
-						<form class="w3-container" action="medAtualizar_exe.php" method="post" enctype="multipart/form-data">
+						<form class="w3-container" action="veiAtualizar_exe.php" method="post" enctype="multipart/form-data">
 							<table class='w3-table-all'>
 								<tr>
 									<td style="width:50%;">
 										<p>
-											<input type="hidden" id="Id" name="Id" value="<?php echo $id_medico; ?>">
+											<input type="hidden" id="Id" name="Id" value="<?php echo $id_veiculo; ?>">
 										<p>
-										<label class="w3-text-IE"><b>Nome</b></label>
-										<input class="w3-input w3-border w3-light-grey " name="Nome" type="text" pattern="[a-zA-Z\u00C0-\u00FF ]{10,100}$" title="Nome entre 10 e 100 letras." value="<?php echo $nome; ?>" required>
+										<label class="w3-text-IE"><b>Marca/Modelo</b></label>
+										<input class="w3-input w3-border w3-light-grey " name="Marca/Modelo" type="text" pattern="[a-zA-Z\u00C0-\u00FF ]{10,100}$" title="Nome entre 10 e 100 letras." value="<?php echo $marca_modelo; ?>" required>
 										</p>
 										<p>
-										<label class="w3-text-IE"><b>CRM</b>*</label>
-										<input class="w3-input w3-border w3-light-grey " name="CRM" id="CRM" type="text" maxlength="15" placeholder="CRM/UF XXXX-XX" title="CRM/UF XXXX-XX" value="<?php echo $CRM; ?>" pattern="CRM\/([A-Z]{2}) [0-9]{4}-[0-9]{2}$" required>
+										<label class="w3-text-IE"><b>Cor</b>*</label>
+										<input class="w3-input w3-border w3-light-grey " name="cor" id="cor" type="text" maxlength="20" placeholder="Cor" title="Cor" value="<?php echo $cor; ?>" required>
 										</p>
 										<p>
-										<label class="w3-text-IE"><b>Data de Nascimento</b></label>
-										<input class="w3-input w3-border w3-light-grey " name="DataNasc" type="date" placeholder="dd/mm/aaaa" title="dd/mm/aaaa" title="Formato: dd/mm/aaaa" value="<?php echo $dataNasc; ?>">
+										<label class="w3-text-IE"><b>Ano</b></label>
+										<input class="w3-input w3-border w3-light-grey " name="ano" type="year" placeholder="ano" title="ano" title="Formato: aaaa" value="<?php echo $ano; ?>">
 										</p>
 
-										<p><label class="w3-text-IE"><b>Especialidade</b>*</label>
-											<select name="Especialidade" id="Especialidade" class="w3-input w3-border w3-light-grey " required>
+										<p><label class="w3-text-IE"><b>Sinistro</b>*</label>
+											<select name="Sinistro" id="Sinistro" class="w3-input w3-border w3-light-grey " required>
 											<?php
-											foreach ($optionsEspec as $key => $value) {
+											foreach ($optionsSinist as $key => $value) {
 												echo $value;
 											}
 											?>
@@ -114,11 +108,11 @@
 
 									</td>
 									<td>
-									<p style="text-align:center"><label class="w3-text-IE"><b>Minha Imagem para Identificação: </b></label></p>
+									<p style="text-align:center"><label class="w3-text-IE"><b>Imagem para Identificação: </b></label></p>
 									<?php
-									if ($foto) { ?>
+									if ($imagem) { ?>
 										<p style="text-align:center">
-											<img id="imagemSelecionada" class="w3-circle w3-margin-top" src="data:image/png;base64,<?= base64_encode($foto); ?>" />
+											<img id="imagemSelecionada" class="w3-circle w3-margin-top" src="data:image/png;base64,<?= base64_encode($imagem); ?>" />
 										</p>
 									<?php
 									} else {
@@ -139,7 +133,7 @@
 									<td colspan="2" style="text-align:center">
 									<p>
 										<input type="submit" value="Alterar" class="w3-btn w3-red">
-										<input type="button" value="Cancelar" class="w3-btn w3-theme" onclick="window.location.href='medListar.php'">
+										<input type="button" value="Cancelar" class="w3-btn w3-theme" onclick="window.location.href='veiListar.php'">
 									</p>
 									</td>
 								</tr>
@@ -149,7 +143,7 @@
 					<?php
 					} else { ?>
 						<div class="w3-container w3-theme">
-							<h2>Médico inexistente</h2>
+							<h2>Veículo inexistente</h2>
 						</div>
 						<br>
 				<?php

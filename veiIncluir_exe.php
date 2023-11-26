@@ -1,22 +1,16 @@
 <!DOCTYPE html>
-<!-------------------------------------------------------------------------------
-    Desenvolvimento Web
-    PUCPR
-    Profa. Cristina V. P. B. Souza
-    Agosto/2022
----------------------------------------------------------------------------------->
-<!-- medIncluir_exe.php -->
+<!-- veiIncluir_exe.php -->
 
 <html>
 <head>
-	<title>Clínica Médica ABC</title>
+	<title>Seguradora</title>
 	<link rel="icon" type="image/png" href="imagens/favicon.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="css/customize.css">
 </head>
 
-<body onload="w3_show_nav('menuMedico')">
+<body onload="w3_show_nav('menuVeiculo')">
 	<!-- Inclui MENU.PHP  -->
 	<?php require 'geral/menu.php'; ?>
 	<?php require 'bd/conectaBD.php'; ?>
@@ -39,10 +33,11 @@
 
 				<!-- Acesso ao BD-->
 				<?php
-				$nome    = $_POST['Nome'];
-				$CRM     = $_POST['CRM'];
-				$dtNasc  = $_POST['DataNasc'];
-				$espec   = $_POST['Especialidade'];
+				$id      = $_POST['Id'];
+				$marcaModelo    = $_POST['Marca/Modelo'];
+				$ano     = $_POST['Ano'];
+				$cor  = $_POST['Cor'];
+				$sinistro   = $_POST['Sinistro'];
 
 				// Cria conexão
 				$conn = new mysqli($servername, $username, $password, $database);
@@ -53,15 +48,15 @@
 				// Faz Select na Base de Dados
 
 				if ($_FILES['Imagem']['size'] == 0) { // Não recebeu uma imagem binária
-					$sql = "INSERT INTO Medico (Nome, CRM, Dt_Nasc, ID_Espec, Foto) VALUES ('$nome','$CRM','$dtNasc', '$espec', NULL)";
+					$sql = "INSERT INTO veiculos (marca_modelo, Cor, Ano, id_sinistro, Imagem) VALUES ('$marcaModelo','$cor','$ano', '$sinistro', NULL)";
 				} else {                              // Recebeu uma imagem binária
 					$imagem = addslashes(file_get_contents($_FILES['Imagem']['tmp_name'])); // Prepara para salvar em BD
-					$sql = "INSERT INTO Medico (Nome, CRM, Dt_Nasc, ID_Espec, Foto) VALUES ('$nome','$CRM','$dtNasc', '$espec','$imagem')";
+					$sql = "INSERT INTO veiculos (marca_modelo, Cor, Ano, id_sinistro, Imagem) VALUES ('$marcaModelo','$cor','$ano', '$sinistro','$imagem')";
 				}
 				?>
 				<div class='w3-responsive w3-card-4'>
 					<div class="w3-container w3-theme">
-						<h2>Inclusão de Novo Médico</h2>
+						<h2>Inclusão de Novo Veiculo</h2>
 					</div>
 					<?php
 					if ($result = $conn->query($sql)) {

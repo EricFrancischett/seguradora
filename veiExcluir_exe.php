@@ -1,22 +1,16 @@
 <!DOCTYPE html>
-<!-------------------------------------------------------------------------------
-    Desenvolvimento Web
-    PUCPR
-    Profa. Cristina V. P. B. Souza
-    Agosto/2022
----------------------------------------------------------------------------------->
-<!-- medExcluir.php -->
+<!-- veiExcluir.php -->
 
 <html>
 	<head>
 
-	  <title>Clínica Médica ABC</title>
+	  <title>Seguradora</title>
 	  <link rel="icon" type="image/png" href="imagens/favicon.png" />
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	  <link rel="stylesheet" href="css/customize.css">
 	</head>
-<body onload="w3_show_nav('menuMedico')">
+<body onload="w3_show_nav('menuVeiculo')">
 <!-- Inclui MENU.PHP  -->
 <?php require 'geral/menu.php';?>
 <?php require 'bd/conectaBD.php'; ?>
@@ -38,7 +32,7 @@
 	echo "</p> "
 	?>
 	<div class="w3-container w3-theme">
-	<h2>Exclusão de Médico</h2>
+	<h2>Exclusão de Veículo</h2>
 	</div>
 
 	<!-- Acesso ao BD-->
@@ -56,13 +50,13 @@
 		}
 
 		// Faz DELETE na Base de Dados
-		$sql = "DELETE FROM Medico WHERE ID_Medico = $id";
+		$sql = "DELETE FROM veiculos WHERE id_veiculo = $id";
 
 		echo "<div class='w3-responsive w3-card-4'>";
 		if ($result = mysqli_query($conn, $sql)) {
 			echo "<p>&nbsp;Registro excluído com sucesso! </p>";
 		} else {
-			echo "<p>&nbsp;Erro executando DELETE: " . mysqli_error($conn . "</p>");
+			echo "<p>&nbsp;Erro executando DELETE: " . mysqli_error($conn) . "</p>";
 		}
         echo "</div>";
 		mysqli_close($conn);  //Encerra conexao com o BD

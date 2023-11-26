@@ -1,21 +1,15 @@
 <!DOCTYPE html>
-<!-------------------------------------------------------------------------------
-    Desenvolvimento Web
-    PUCPR
-    Profa. Cristina V. P. B. Souza
-    Agosto/2022
----------------------------------------------------------------------------------->
-<!-- medExcluir.php -->
+<!-- veiExcluir.php -->
 
 <html>
 <head>
-	<title>Clínica Médica ABC</title>
+	<title>Seguradora</title>
 	<link rel="icon" type="image/png" href="imagens/favicon.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="css/customize.css">
 </head>
-<body onload="w3_show_nav('menuMedico')">
+<body onload="w3_show_nav('menuVeiculo')">
 	<!-- Inclui MENU.PHP  -->
 	<?php require 'geral/menu.php'; ?>
 	<?php require 'bd/conectaBD.php'; ?>
@@ -47,48 +41,48 @@
 					die("<strong> Falha de conexão: </strong>" . $conn->connect_error);
 				}
 
-				$id = $_GET['id']; //Obtém a PK do médico que será excluído
+				$id = $_GET['id']; //Obtém a PK do Veículo que será excluído
 
 				// Faz Select na Base de Dados
-				$sql = "SELECT ID_Medico, CRM, Nome, Nome_Espec AS Especialidade, Foto, Dt_Nasc FROM Medico AS M INNER JOIN Especialidade AS E ON (M.ID_Espec = E.ID_Espec) WHERE ID_Medico = $id;";
+				$sql = "SELECT id_veiculo, cor, marca_modelo, nome_sinistro AS Sinistro, Imagem, ano FROM veiculos AS V INNER JOIN Sinistro AS S ON (V.id_sinistro = S.id_sinistro) WHERE id_veiculo = $id;";
 
 				//Inicio DIV form
 				echo "<div class='w3-responsive w3-card-4'>";
 				if ($result = $conn->query($sql)) {  // Consulta ao BD ok
 					if ($result->num_rows == 1) {          // Retorna 1 registro que será deletado  
 						$row = $result->fetch_assoc();
-						$dataN = explode('-', $row["Dt_Nasc"]);
+						$dataN = explode('-', $row["ano"]);
 						$ano = $dataN[0];
 						$mes = $dataN[1];
 						$dia = $dataN[2];
 						$nova_data = $dia . '/' . $mes . '/' . $ano;
 				?>
 						<div class="w3-container w3-theme">
-							<h2>Exclusão do Médico Cód. = [<?php echo $row['ID_Medico']; ?>]</h2>
+							<h2>Exclusão do Veículo Cód. = [<?php echo $row['id_veiculo']; ?>]</h2>
 						</div>
-						<form class="w3-container" action="medExcluir_exe.php" method="post" onsubmit="return check(this.form)">
-							<input type="hidden" id="Id" name="Id" value="<?php echo $row['ID_Medico']; ?>">
+						<form class="w3-container" action="veiExcluir_exe.php" method="post" onsubmit="return check(this.form)">
+							<input type="hidden" id="Id" name="Id" value="<?php echo $row['id_veiculo']; ?>">
 							<p>
-							<label class="w3-text-IE"><b>Nome: </b> <?php echo $row['Nome']; ?> </label>
+							<label class="w3-text-IE"><b>Marca/Modelo: </b> <?php echo $row['marca_modelo']; ?> </label>
 							</p>
 							<p>
-							<label class="w3-text-IE"><b>CRM: </b><?php echo $row['CRM']; ?></label>
+							<label class="w3-text-IE"><b>cor: </b><?php echo $row['cor']; ?></label>
 							</p>
 							<p>
 							<label class="w3-text-IE"><b>Data de Nascimento: </b><?php echo $nova_data; ?></label>
 							</p>
 							<p>
-							<label class="w3-text-IE"><b>Especialidade: </b><?php echo $row['Especialidade']; ?></label>
+							<label class="w3-text-IE"><b>Sinistro: </b><?php echo $row['Sinistro']; ?></label>
 							</p>
 							<p>
 							<input type="submit" value="Confirma exclusão?" class="w3-btn w3-red">
-							<input type="button" value="Cancelar" class="w3-btn w3-theme" onclick="window.location.href='medListar.php'">
+							<input type="button" value="Cancelar" class="w3-btn w3-theme" onclick="window.location.href='veiListar.php'">
 							</p>
 						</form>
 					<?php
 					} else { ?>
 						<div class="w3-container w3-theme">
-							<h2>Tentativa de exclusão de Médico inexistente</h2>
+							<h2>Tentativa de exclusão de Veículo inexistente</h2>
 						</div>
 						<br>
 				<?php }

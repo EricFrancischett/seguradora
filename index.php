@@ -1,35 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt">
-<!-------------------------------------------------------------------------------
-    Desenvolvimento Web
-    PUCPR
-    Profa. Cristina V. P. B. Souza
-    Agosto/2022
----------------------------------------------------------------------------------->
 <!-- Index.php --> 
 
 <html>
 	<head>	
         <meta charset="UTF-8">
-		<title>Clínica Médica ABC</title>
+		<title>Seguradora</title>
 		<link rel="icon" type="image/png" href="imagens/favicon.png"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="css/customize.css">
-        <script type="text/javascript" src="js/myScriptClinic.js"></script>
+        <script type="text/javascript" src="js/myScript.js"></script>
 	</head>
 	<body >  
         <?php
             session_start();
             if (isset($_SESSION ['login'])) {                               // Se existe usuário logado 
-                header("location: /ConsultorioLogin/medlistar.php");  // Vai para as funcionalidades do site
+                header("location: /seguradora/veiListar.php");  // Vai para as funcionalidades do site
                 exit();
             }
         ?>
         <!-- Menu Superior -->
         <div class="w3-top" id="LoginCadastro" >
             <div class="w3-row w3-white w3-padding" >
-                <div class="w3-half" style="margin:0 0 0 0"><a href="."><img src='imagens/logo.jpg' alt='  Clínica Médica ABC '></a></div>
+                <div class="w3-half" style="margin:0 0 0 0"><a href="."><img src='imagens/logo.jpg' alt='  Seguradora '></a></div>
                 <div class="w3-half w3-margin-top w3-wide w3-hide-medium w3-hide-small">
                 </div>
             </div>
@@ -43,7 +37,7 @@
         <div class="w3-top">
             <div class="w3-row w3-white w3-padding">
                 <div class="w3-half" style="margin:0 0 0 0">
-                    <a href="."><img src='imagens/logo.jpg' alt=' Clínica ABC '></a>
+                    <a href="."><img src='imagens/logo.jpg' alt=' Seguradora '></a>
                 </div>
             </div>
         </div>
@@ -65,7 +59,7 @@
 		<div class="w3-main w3-container" style="margin-left:270px;margin-top:130px;">
 
             <div class="w3-panel w3-padding-large w3-card-4 w3-light-grey" >
-                <h1 class="w3-jumbo">Consultório</h1>
+                <h1 class="w3-jumbo">Seguradora</h1>
 
                 <img src="imagens/quadro.jpg" class="w3-round-xxlarge" style="max-width:800px">
                                       

@@ -14,7 +14,7 @@
 	<div class="w3-top"   > 
 		<div class="w3-row w3-white w3-padding" >
 			<div class="w3-half" style="margin:0 0 0 0">
-				<a href="."><img src='imagens/logo.jpg' alt=' Seguradora '></a>
+				<a href="."><img src='imagens/Logo1.jpg' alt=' Seguradora '></a>
 			</div>
 			<div class="w3-half w3-margin-top w3-wide w3-hide-medium w3-hide-small">
 				<div class="w3-right"> Gerente: <?php echo $_SESSION['nome']; ?>&nbsp;<a href="logout.php" 

@@ -6,7 +6,7 @@
 	<head>	
         <meta charset="UTF-8">
 		<title>Seguradora</title>
-		<link rel="icon" type="image/png" href="imagens/favicon.png"/>
+		<link rel="icon" type="image/png" href="imagens/favicon1.png"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="css/customize.css">
@@ -23,7 +23,7 @@
         <!-- Menu Superior -->
         <div class="w3-top" id="LoginCadastro" >
             <div class="w3-row w3-white w3-padding" >
-                <div class="w3-half" style="margin:0 0 0 0"><a href="."><img src='imagens/logo.jpg' alt='  Seguradora '></a></div>
+                <div class="w3-half" style="margin:0 0 0 0"><a href="."><img src='imagens/Logo1.jpg' alt='  Seguradora '></a></div>
                 <div class="w3-half w3-margin-top w3-wide w3-hide-medium w3-hide-small">
                 </div>
             </div>
@@ -37,7 +37,7 @@
         <div class="w3-top">
             <div class="w3-row w3-white w3-padding">
                 <div class="w3-half" style="margin:0 0 0 0">
-                    <a href="."><img src='imagens/logo.jpg' alt=' Seguradora '></a>
+                    <a href="."><img src='imagens/Logo1.jpg' alt=' Seguradora '></a>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
             <div class="w3-panel w3-padding-large w3-card-4 w3-light-grey" >
                 <h1 class="w3-jumbo">Seguradora</h1>
 
-                <img src="imagens/quadro.jpg" class="w3-round-xxlarge" style="max-width:800px">
+                <img src="imagens/quadro1.jpg" class="w3-round-xxlarge" style="max-width:800px">
                                       
                 <!-- LOGIN FAIL MODAL: login incorreto ou cadastro incorreto --> 
                 <?php

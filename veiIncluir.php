@@ -4,7 +4,7 @@
 <head>
 
 	<title>Seguradora</title>
-	<link rel="icon" type="image/png" href="imagens/favicon.png" />
+	<link rel="icon" type="image/png" href="imagens/favicon1.png" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="css/customize.css">
@@ -87,7 +87,7 @@
 						</td>
 						<td>
 						<p style="text-align:center"><label class="w3-text-IE"><b>Imagem para Identificação: </b></label></p>
-						<p style="text-align:center"><img id="imagemSelecionada" src="imagens/pessoa.jpg" /></p>
+						<p style="text-align:center"><img id="imagemSelecionada" src="imagens/carro.jpg" /></p>
 						<p style="text-align:center"><label class="w3-btn w3-theme">Selecione uma Imagem</label>
 								<input type="hidden" name="MAX_FILE_SIZE" value="16777215" />
 								<input type="file" id="Imagem" name="Imagem" accept="imagem/*" onchange="validaImagem(this);"> 
